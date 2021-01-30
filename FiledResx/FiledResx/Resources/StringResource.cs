@@ -1,15 +1,27 @@
 ﻿namespace FiledResx.Resources
 {
-    public class StringResource : StringResourceBase
+    /// <summary>
+    /// このアセンブリの文字列リソースを提供します。
+    /// </summary>
+    public class StringResource : FileBasedStringResourceBase
     {
+        /// <summary>
+        /// <see cref="IStringResourceManager"/> のシングルトン インスタンスを保持します。
+        /// </summary>
+        private static IStringResourceManager resourceManager;
+
+        /// <summary>
+        /// <see cref="StringResource"/> クラスの新しいインスタンスを生成します。
+        /// </summary>
         private StringResource()
         {
+            // シングルトン デザイン パターンなので、private とする。
         }
 
         /// <summary>
-        /// このクラスで使用されているキャッシュされた <see cref="StringResource"/> インスタンスを返します。
+        /// <see cref="IStringResourceManager"/> のシングルトン インスタンスを取得します。
         /// </summary>
-        public static StringResource ResourceManager
+        public static IStringResourceManager ResourceManager
         {
             get
             {
@@ -17,7 +29,8 @@
                 {
                     resourceManager = new StringResource();
                 }
-                return (StringResource)resourceManager;
+
+                return resourceManager;
             }
         }
     }
