@@ -8,6 +8,9 @@ using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
+// MEMO: 外部からのリソースの個別書き換え、オーバーライドは現段階で未実装
+// MEMO: カルチャの対応は現段階で未実装
+
 namespace FiledResx.Resources
 {
     /// <summary>
