@@ -3,7 +3,7 @@
     /// <summary>
     /// このアセンブリの文字列リソースを提供します。
     /// </summary>
-    public class StringResource : FileBasedStringResourceBase
+    public class StringResource : FileBasedStringResource
     {
         /// <summary>
         /// <see cref="IStringResourceManager"/> のシングルトン インスタンスを保持します。

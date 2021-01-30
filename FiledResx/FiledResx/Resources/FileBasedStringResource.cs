@@ -16,7 +16,7 @@ namespace FiledResx.Resources
     /// <summary>
     /// ファイルベースの文字列リソースの基底機能を提供します。
     /// </summary>
-    public abstract class FileBasedStringResourceBase : INotifyPropertyChanged, IStringResourceManager
+    public abstract class FileBasedStringResource : INotifyPropertyChanged, IStringResourceManager
     {
         /// <summary>
         /// リソース ファイルへの相対パスを表します。
@@ -49,19 +49,19 @@ namespace FiledResx.Resources
         protected static readonly bool isInDesignMode = (bool)DesignerProperties.IsInDesignModeProperty.GetMetadata(typeof(DependencyObject)).DefaultValue;
 
         /// <summary>
-        /// <see cref="FileBasedStringResourceBase"/> クラスの新しいインスタンスを生成します。
+        /// <see cref="FileBasedStringResource"/> クラスの新しいインスタンスを生成します。
         /// </summary>
-        private FileBasedStringResourceBase()
+        private FileBasedStringResource()
         {
-            // シングルトン デザイン パターンなので、private とする。
+            // 引数付きコンストラクタを呼び出す想定なので、private とする。
         }
 
         /// <summary>
-        /// <see cref="FileBasedStringResourceBase"/> クラスの新しいインスタンスを生成します。
+        /// <see cref="FileBasedStringResource"/> クラスの新しいインスタンスを生成します。
         /// </summary>
         /// <param name="relativePath">プロジェクトにおける、リソースファイルへの相対パス。</param>
         /// <param name="resxname">リソースファイルの名称。</param>
-        public FileBasedStringResourceBase(string relativePath = null, string resxname = null)
+        public FileBasedStringResource(string relativePath = null, string resxname = null)
         {
             resources = new Dictionary<string, string>();
 
