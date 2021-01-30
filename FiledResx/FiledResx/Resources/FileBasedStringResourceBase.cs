@@ -72,7 +72,7 @@ namespace FiledResx.Resources
                 resxname = GetType().FullName;
             }
 
-            string fileName = GetPath(relativePath) + @$"{resxname}.resx";
+            string fileName = GetPath(relativePath) + $"{resxname}.resx";
 
             if (File.Exists(fileName) == true)
             {
@@ -136,7 +136,7 @@ namespace FiledResx.Resources
                 Debug.WriteLine($"index not found: {name}");
             }
 
-            return $"{name}";
+            return null;
         }
 
         /// <summary>
