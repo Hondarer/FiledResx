@@ -30,11 +30,11 @@ namespace FiledResx.Resources
 
         protected readonly Dictionary<string,string> resources;
 
-        protected readonly bool isDesignMode = (bool)DesignerProperties.IsInDesignModeProperty.GetMetadata(typeof(DependencyObject)).DefaultValue;
+        protected readonly bool isInDesignMode = (bool)DesignerProperties.IsInDesignModeProperty.GetMetadata(typeof(DependencyObject)).DefaultValue;
 
         protected string GetMyPath(string relativePath, [CallerFilePath] string from = null)
         {
-            if (isDesignMode == true)
+            if (isInDesignMode == true)
             {
                 // Design mode
                 return Path.GetDirectoryName(from) + @"\";
@@ -63,11 +63,16 @@ namespace FiledResx.Resources
                 resxname = GetType().FullName;
             }
 
-            using (var reader = new ResXResourceReader(GetMyPath(relativePath) + @$"{resxname}.resx"))
+            string fileName = GetMyPath(relativePath) + @$"{resxname}.resx";
+
+            if (File.Exists(fileName) == true)
             {
-                foreach (DictionaryEntry entry in reader)
+                using (var reader = new ResXResourceReader(fileName))
                 {
-                    resources.Add(entry.Key.ToString(), entry.Value.ToString());
+                    foreach (DictionaryEntry entry in reader)
+                    {
+                        resources.Add(entry.Key.ToString(), entry.Value.ToString());
+                    }
                 }
             }
         }
@@ -87,17 +92,12 @@ namespace FiledResx.Resources
                 return value;
             }
 
-            if (isDesignMode == true)
-            {
-                // Design mode
-                return $"!{index}";
-            }
-            else
+            if (isInDesignMode == false)
             {
                 Debug.WriteLine($"index not found: {index}");
             }
 
-            return null;
+            return $"!{index}";
         }
 
         /// <summary>

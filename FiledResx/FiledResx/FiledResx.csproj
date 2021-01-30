@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Resources\FiledResx.Resources.StringResource.resx" />
     <EmbeddedResource Remove="Resources\Resource.resx" />
   </ItemGroup>
 
