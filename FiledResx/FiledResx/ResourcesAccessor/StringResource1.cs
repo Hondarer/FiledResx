@@ -3,19 +3,20 @@
     /// <summary>
     /// このアセンブリの文字列リソースを提供します。
     /// </summary>
-    public class StringResource : FileBasedStringResource
+    public class StringResource1 : FileBasedStringResource
     {
         /// <summary>
         /// <see cref="IStringResourceManager"/> のシングルトン インスタンスを保持します。
         /// </summary>
-        private static IStringResourceManager resourceManager;
+        private static IStringResourceManager stringResourceManager;
 
         /// <summary>
-        /// <see cref="StringResource"/> クラスの新しいインスタンスを生成します。
+        /// <see cref="StringResource1"/> クラスの新しいインスタンスを生成します。
         /// </summary>
-        private StringResource()
+        private StringResource1()
         {
-            // シングルトン デザイン パターンなので、private とする。
+            // 初期化する。(CallerFilePath を利用するため、メソッドでの初期化としている。)
+            Init();
         }
 
         /// <summary>
@@ -25,12 +26,12 @@
         {
             get
             {
-                if (resourceManager is null)
+                if (stringResourceManager is null)
                 {
-                    resourceManager = new StringResource();
+                    stringResourceManager = new StringResource1();
                 }
 
-                return resourceManager;
+                return stringResourceManager;
             }
         }
     }

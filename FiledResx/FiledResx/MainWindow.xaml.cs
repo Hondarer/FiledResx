@@ -12,7 +12,8 @@ namespace FiledResx
         {
             InitializeComponent();
 
-            Debug.WriteLine(FiledResx.Resources.StringResource.ResourceManager.GetString("TEST"));
+            Debug.WriteLine(FiledResx.Resources.StringResource1.ResourceManager.GetString("TEST"));
+            Debug.WriteLine(FiledResx.Resources.StringResource2.ResourceManager.GetString("TEST2"));
         }
     }
 }

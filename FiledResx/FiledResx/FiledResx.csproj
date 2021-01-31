@@ -8,15 +8,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Resources\FiledResx.Resources.StringResource.resx" />
+    <EmbeddedResource Remove="Resources\FiledResx.Resources.StringResource1.en-US.resx" />
+    <EmbeddedResource Remove="Resources\FiledResx.Resources.StringResource1.resx" />
     <EmbeddedResource Remove="Resources\Resource.resx" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\FiledResx.Resources.StringResource.resx">
+    <Content Include="Resources\FiledResx.Resources.StringResource1.en-US.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\FiledResx.Resources.StringResource1.resx">
       <Generator></Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\StringResource2.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
