@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Windows;
 using System.Windows.Data;
 
@@ -155,8 +154,8 @@ namespace FiledResx.Resources
                 }
                 else
                 {
-                    // このスレッドの UI カルチャを使用。
-                    culture = Thread.CurrentThread.CurrentUICulture;
+                    // UI カルチャを使用。
+                    culture = CultureInfo.CurrentUICulture;
                 }
             }
 

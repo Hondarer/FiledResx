@@ -61,6 +61,9 @@ namespace FiledResx.Resources
             // CheckResourceFile メソッドで利用するため、退避しておく。
             this.relativePath = GetPath(relativePath, callerFilePath);
             this.resxname = resxname;
+
+            // 現在のカルチャについてはここで読み込んでおく。
+            CheckResourceFile(CultureInfo.CurrentUICulture);
         }
 
         /// <summary>
