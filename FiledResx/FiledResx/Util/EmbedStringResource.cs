@@ -35,8 +35,6 @@ namespace FiledResx.Resources
             resourceManager = new ResourceManager(baseName, GetType().Assembly);
         }
 
-        #region IStringResourceManager
-
         /// <summary>
         /// 現在の UI カルチャの指定した文字列リソースを返します。
         /// </summary>
@@ -47,7 +45,5 @@ namespace FiledResx.Resources
         {
             return resourceManager.GetString(name, culture);
         }
-
-        #endregion
     }
 }

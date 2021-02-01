@@ -160,43 +160,18 @@ namespace FiledResx.Resources
                 }
             }
 
-            // カルチャをさかのぼって辞書に登録されているか確認する。
-            CultureInfo _culture = culture;
-            while (true)
-            {
-                if (overrideResource.TryGetValue(_culture.ToString(), out Dictionary<string, string> dictionary) == true)
-                {
-                    // キーに対応する値はあるか
-                    if (dictionary.TryGetValue(name, out string value) == true)
-                    {
-                        // あれば、値を返す。
-                        return value;
-                    }
-                }
-
-                // CultureInfo.InvariantCulture のチェックが完了したらループ終了。
-                if (_culture == CultureInfo.InvariantCulture)
-                {
-                    break;
-                }
-
-                // ひとつ親のカルチャを参照する。
-                // 最終的に CultureInfo.InvariantCulture が root。
-                _culture = _culture.Parent;
-            }
+            // オーバーライド定義からリソース文字列を探す。
+            string value = FindResource(name, culture, overrideResource);
 
             // オーバーライド定義からは必要なリソースが見つからなかった。
-            // 継承されたクラスでリソース文字列を返す。
-            return GetStringImpl(name, culture);
-        }
+            // 継承されたクラスでリソース文字列を探す。
+            if (value == null)
+            {
+                value = GetStringImpl(name, culture);
+            }
 
-        /// <summary>
-        /// 現在の UI カルチャの指定した文字列リソースを返します。
-        /// </summary>
-        /// <param name="name">取得するリソースの名前。</param>
-        /// <param name="culture">An object that represents the culture for which the resource is localized.</param>
-        /// <returns>呼び出し元の現在の UI カルチャのためにローカライズされたリソースの値、または、リソース セットから値が見つからない場合は <c>null</c>。</returns>
-        protected abstract string GetStringImpl(string name, CultureInfo culture);
+            return value;
+        }
 
         /// <summary>
         /// オーバーライドする <see cref="CultureInfo"/> を取得または設定します。
@@ -215,5 +190,50 @@ namespace FiledResx.Resources
         }
 
         #endregion
+
+        /// <summary>
+        /// リソース ディクショナリから値を返します。
+        /// </summary>
+        /// <param name="name">取得するリソースの名前。</param>
+        /// <param name="culture">An object that represents the culture for which the resource is localized.</param>
+        /// <param name="resourceDictionary">検索対象のリソース ディクショナリ。</param>
+        /// <returns>呼び出し元の現在の UI カルチャのためにローカライズされたリソースの値、または、リソース セットから値が見つからない場合は <c>null</c>。</returns>
+        protected string FindResource(string name, CultureInfo culture, Dictionary<string, Dictionary<string, string>> resourceDictionary)
+        {
+            // カルチャをさかのぼって辞書に登録されているか確認する。
+            while (true)
+            {
+                if (resourceDictionary.TryGetValue(culture.ToString(), out Dictionary<string, string> dictionary) == true)
+                {
+                    // キーに対応する値はあるか
+                    if (dictionary.TryGetValue(name, out string value) == true)
+                    {
+                        // あれば、値を返す。
+                        return value;
+                    }
+                }
+
+                // CultureInfo.InvariantCulture のチェックが完了したらループ終了。
+                if (culture == CultureInfo.InvariantCulture)
+                {
+                    break;
+                }
+
+                // ひとつ親のカルチャを参照する。
+                // 最終的に CultureInfo.InvariantCulture が root。
+                culture = culture.Parent;
+            }
+
+            // 見つからなかった。
+            return null;
+        }
+
+        /// <summary>
+        /// 現在の UI カルチャの指定した文字列リソースを返します。
+        /// </summary>
+        /// <param name="name">取得するリソースの名前。</param>
+        /// <param name="culture">An object that represents the culture for which the resource is localized.</param>
+        /// <returns>呼び出し元の現在の UI カルチャのためにローカライズされたリソースの値、または、リソース セットから値が見つからない場合は <c>null</c>。</returns>
+        protected abstract string GetStringImpl(string name, CultureInfo culture);
     }
 }
