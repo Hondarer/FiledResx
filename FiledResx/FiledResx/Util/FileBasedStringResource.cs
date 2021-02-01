@@ -105,11 +105,11 @@ namespace FiledResx.Resources
                     }
                     string fileName = relativePath + $"{resxname}.{cultureKey}resx";
 
-                    // ファイルがなくてもディクショナリは作る。二回目以降のチェック省略のため。
+                    // 2 回目以降のチェック省略のため、ファイルがなくてもディクショナリは作る。
                     Dictionary<string, string> dictionary = new Dictionary<string, string>();
                     resource.Add(culture.ToString(), dictionary);
 
-                    // ファイルが存在すれば、resxファイルからキーと値を登録する。
+                    // ファイルが存在すれば、resx ファイルからキーと値を登録する。
                     if (File.Exists(fileName) == true)
                     {
                         using (var reader = new ResXResourceReader(fileName))
