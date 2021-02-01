@@ -8,8 +8,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <x:StaticExtension Member="resc:StringResource1.ResourceManager" x:Key="StringResource1" />
-        <x:StaticExtension Member="resc:StringResource2.ResourceManager" x:Key="StringResource2" />
+        <x:Static Member="resc:StringResource1.ResourceManager" x:Key="StringResource1" />
+        <x:Static Member="resc:StringResource2.ResourceManager" x:Key="StringResource2" />
     </Window.Resources>
     <Grid>
         <StackPanel>

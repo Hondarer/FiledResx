@@ -9,6 +9,14 @@ namespace FiledResx.Resources
     public interface IStringResourceManager : INotifyPropertyChanged
     {
         /// <summary>
+        /// オーバーライドする文字列を登録または更新します。
+        /// </summary>
+        /// <param name="name">登録または更新するリソースの名前。</param>
+        /// <param name="value">登録または更新するリソースの値。</param>
+        /// <param name="culture">カルチャ。</param>
+        void RegistString(string name, string value, CultureInfo culture = null);
+
+        /// <summary>
         /// 現在の UI カルチャの指定した文字列リソースを取得します。
         /// </summary>
         /// <param name="name">取得するリソースの名前。</param>

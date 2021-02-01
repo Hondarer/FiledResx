@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 namespace FiledResx.Resources
 {
     /// <summary>
-    /// ファイルベースの文字列リソースを提供します。
+    /// ファイルによる文字列リソースを提供します。
     /// </summary>
     public abstract class FileBasedStringResource : StringResourceBase
     {

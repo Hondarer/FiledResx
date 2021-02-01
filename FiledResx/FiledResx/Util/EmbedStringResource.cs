@@ -4,7 +4,7 @@ using System.Resources;
 namespace FiledResx.Resources
 {
     /// <summary>
-    /// 埋め込みリソースベースの文字列リソースを提供します。
+    /// 埋め込みリソースによる文字列リソースを提供します。
     /// </summary>
     public abstract class EmbedStringResource : StringResourceBase
     {
@@ -45,7 +45,7 @@ namespace FiledResx.Resources
         /// <returns>呼び出し元の現在の UI カルチャのためにローカライズされたリソースの値、または、リソース セットから値が見つからない場合は <c>null</c>。</returns>
         public override string GetString(string name, CultureInfo culture = null)
         {
-            return resourceManager.GetString(name, Culture);
+            return resourceManager.GetString(name, culture);
         }
 
         #endregion
