@@ -17,8 +17,10 @@ namespace FiledResx
             Debug.WriteLine(FiledResx.Resources.StringResource1.ResourceManager.GetString("TEST"));
             Debug.WriteLine(FiledResx.Resources.StringResource2.ResourceManager.GetString("TEST2"));
 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            DispatcherTimer timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
             timer.Tick += Timer_Tick;
             timer.Start();
         }

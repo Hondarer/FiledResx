@@ -6,8 +6,7 @@ using System.IO;
 using System.Resources;
 using System.Runtime.CompilerServices;
 
-// MEMO: 外部からのリソースの個別書き換え、オーバーライドは現段階で未実装
-// MEMO: カルチャの対応は現段階で未実装
+// MEMO: カルチャの対応は現段階で未実装。実装時の影響範囲は本クラスに閉じる。
 
 namespace FiledResx.Resources
 {
@@ -99,7 +98,7 @@ namespace FiledResx.Resources
         /// <param name="name">取得するリソースの名前。</param>
         /// <param name="culture">An object that represents the culture for which the resource is localized.</param>
         /// <returns>呼び出し元の現在の UI カルチャのためにローカライズされたリソースの値、または、リソース セットから値が見つからない場合は <c>null</c>。</returns>
-        public override string GetString(string name, CultureInfo culture = null)
+        protected override string GetStringImpl(string name, CultureInfo culture)
         {
             if (resources.TryGetValue(name, out string value) == true)
             {

@@ -43,7 +43,7 @@ namespace FiledResx.Resources
         /// <param name="name">取得するリソースの名前。</param>
         /// <param name="culture">An object that represents the culture for which the resource is localized.</param>
         /// <returns>呼び出し元の現在の UI カルチャのためにローカライズされたリソースの値、または、リソース セットから値が見つからない場合は <c>null</c>。</returns>
-        public override string GetString(string name, CultureInfo culture = null)
+        protected override string GetStringImpl(string name, CultureInfo culture)
         {
             return resourceManager.GetString(name, culture);
         }
