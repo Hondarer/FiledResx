@@ -13,7 +13,7 @@ namespace FiledResx.Resources
     /// <summary>
     /// ファイルによる文字列リソースを提供します。
     /// </summary>
-    public abstract class FileBasedStringResource : StringResourceBase
+    public abstract class FiledStringResource<T> : StringResourceBase<T>
     {
         /// <summary>
         /// リソース ファイルへの既定の相対パスを表します。

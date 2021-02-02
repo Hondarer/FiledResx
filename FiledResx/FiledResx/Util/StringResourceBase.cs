@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -10,7 +11,7 @@ namespace FiledResx.Resources
     /// <summary>
     /// 文字列リソースの基底機能を提供します。
     /// </summary>
-    public abstract class StringResourceBase : IStringResourceManager
+    public abstract class StringResourceBase<T> : IStringResourceManager
     {
         /// <summary>
         /// デザイン モードかどうかを保持します。
@@ -26,6 +27,27 @@ namespace FiledResx.Resources
         /// オーバーライドする文字列リソースを保持します。
         /// </summary>
         private readonly Dictionary<string, Dictionary<string, string>> overrideResource = new Dictionary<string, Dictionary<string, string>>();
+        
+        /// <summary>
+        /// <see cref="IStringResourceManager"/> のシングルトン インスタンスを保持します。
+        /// </summary>
+        private static T stringResourceManager;
+
+        /// <summary>
+        /// <see cref="IStringResourceManager"/> のシングルトン インスタンスを取得します。
+        /// </summary>
+        public static IStringResourceManager ResourceManager
+        {
+            get
+            {
+                if (stringResourceManager is null)
+                {
+                    stringResourceManager = (T)Activator.CreateInstance(typeof(T), true); // call non-public constructor
+                }
+
+                return (IStringResourceManager)stringResourceManager;
+            }
+        }
 
         #region IStringResourceManager
 
@@ -50,7 +72,7 @@ namespace FiledResx.Resources
         /// <returns>
         /// 値が変更された場合は <c>true</c>、既存の値が目的の値に一致した場合は <c>false</c> を返します。
         /// </returns>
-        protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        protected virtual bool SetProperty<U>(ref U storage, U value, [CallerMemberName] string propertyName = null)
         {
             if (Equals(storage, value))
             {

@@ -6,20 +6,12 @@ namespace FiledResx.Resources
     /// <summary>
     /// 埋め込みリソースによる文字列リソースを提供します。
     /// </summary>
-    public abstract class EmbedStringResource : StringResourceBase
+    public abstract class EmbedStringResource<T> : StringResourceBase<T>
     {
         /// <summary>
         /// <see cref="ResourceManager"/> を保持します。
         /// </summary>
         private readonly ResourceManager resourceManager;
-
-        /// <summary>
-        /// <see cref="EmbedStringResource"/> クラスの新しいインスタンスを生成します。
-        /// </summary>
-        private EmbedStringResource()
-        {
-            // 引数付きコンストラクタを呼び出す想定なので、private とする。
-        }
 
         /// <summary>
         /// <see cref="EmbedStringResource"/> クラスの新しいインスタンスを生成します。
