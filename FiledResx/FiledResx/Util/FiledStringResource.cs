@@ -62,7 +62,7 @@ namespace FiledResx.Resources
             this.relativePath = GetPath(relativePath, callerFilePath);
             this.resxname = resxname;
 
-            // 現在のカルチャについてはここで読み込んでおく。
+            // 現在のカルチャに紐づく resx についてはここで読み込んでおく。
             CheckResourceFile(CultureInfo.CurrentUICulture);
         }
 
